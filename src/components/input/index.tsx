@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import {ControllerRenderProps} from 'react-hook-form';
 
 interface InputProps {
@@ -76,7 +77,14 @@ const Input: React.FC<InputProps> = ({
               onInputClear?.();
             }}
           >
-            {/*<Icon icon="icon-close" className="text-white" />*/}
+            <Image
+          
+              src="/icons/close.svg"
+              width={16}
+              height={16}
+              alt="clear input"
+              className="cursor-pointer hover:opacity-80"
+            />
           </span>
         )}
       </div>

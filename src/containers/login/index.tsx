@@ -62,7 +62,7 @@ const LoginContainer = ({handleLoginSubmit}: TProps) => {
                 variants={fieldVariants}
                 initial="hidden"
                 animate="visible"
-                custom={0} // First field (delay 0s)
+                custom={0}
               >
                 <Input
                   dir="rtl"

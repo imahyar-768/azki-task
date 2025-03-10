@@ -2,34 +2,33 @@
 
 import Image from 'next/image';
 import Header from '@/components/header';
-import LoginContainer, {TLoginForm} from '@/containers/login';
-import {useState} from 'react';
+import LoginContainer from '@/containers/login';
+import type { TLoginForm } from '@/containers/login/types';
+import {useState, useEffect} from 'react';
 import SelectCarInsurance from '../containers/selectCarInsurance';
+import Cookies from 'js-cookie';
 
 type TState = 'LOGIN' | 'SELECT_TYPE_INSURANCE';
 
 export default function Home() {
-  const [login, setHasLogin] = useState<TState>(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = window.sessionStorage.getItem('ACT');
-      return storedData ? 'SELECT_TYPE_INSURANCE' : 'LOGIN';
-    }
-    return 'LOGIN';
-  });
+  const [login, setHasLogin] = useState<TState>('LOGIN');
+  const [userName, setUserName] = useState<string>('');
 
-  const [userName, setUserName] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = window.sessionStorage.getItem('ACT');
-      if (storedData) {
-        const parsedData = JSON.parse(storedData);
-        return `${parsedData.firstName} ${parsedData.lastName}`;
-      }
+  useEffect(() => {
+    const userData = Cookies.get('user_data');
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      setUserName(`${parsedData.firstName} ${parsedData.lastName}`);
+      setHasLogin('SELECT_TYPE_INSURANCE');
     }
-    return '';
-  });
+  }, []);
 
   const handleLoginSubmit = (data: TLoginForm) => {
-    window.sessionStorage.setItem('ACT', JSON.stringify(data));
+    Cookies.set('user_data', JSON.stringify(data), {
+      expires: 1,
+      secure: true,
+      sameSite: 'strict'
+    });
     setUserName(`${data.firstName} ${data.lastName}`);
     setHasLogin('SELECT_TYPE_INSURANCE');
   };

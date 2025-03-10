@@ -52,12 +52,17 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, title}) => {
 
           {/* Footer */}
           <div className="flex justify-end border-t p-4">
+            
             <button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                window.location.reload();
+              }}
               className="m-auto w-1/2 cursor-pointer rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             >
               متوجه شدم
             </button>
+          
           </div>
         </div>
       </motion.div>

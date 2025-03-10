@@ -15,6 +15,7 @@ interface SelectInputProps {
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
   disabled?: boolean;
+  error?: string;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -27,18 +28,23 @@ const SelectInput: React.FC<SelectInputProps> = ({
   className,
   loading,
   disabled,
+  error,
 }) => {
   return (
     <div className={`w-full ${className}`}>
-      <label
-        className="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
-        htmlFor={id}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          className="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      )}
       <div className="relative">
         <select
-          className="block w-full cursor-pointer appearance-none rounded border border-gray-200 px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+          className={`block w-full cursor-pointer appearance-none rounded border px-4 py-3 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none ${
+            error ? 'border-red-500' : 'border-gray-200'
+          }`}
           id={id}
           value={value}
           onChange={onChange}
@@ -48,14 +54,13 @@ const SelectInput: React.FC<SelectInputProps> = ({
             <>...loading</>
           ) : (
             <>
-              {' '}
               <option value="" disabled>
                 {placeholder}
               </option>
               {options &&
                 options?.map((option, index) => {
                   const optionValue =
-                    typeof option === 'string' ? option : option.label;
+                    typeof option === 'string' ? option : option.value;
                   const optionLabel =
                     typeof option === 'string' ? option : option.label;
                   return (
