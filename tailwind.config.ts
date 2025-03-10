@@ -11,45 +11,11 @@ const config: Config = {
     colors: {
       white: '#FFFFFF',
       black: '#000000',
-      black1: '#0000000A',
-      black2: '#0000001A',
-      navy: '#1F4799',
-      primary: {
-        DEFAULT: '#36F1CD',
-        dark: '#244341',
-        gray: '#526D6B',
-        secondary: '#BDC6CF',
-        semiDark: '#1C3231',
-      },
-      error: {
-        DEFAULT: '#FF8C8C',
-        dark: '#4A2A2C',
-      },
-      warning: {
-        DEFAULT: '#EDC76C',
-        dark: '#4A411C',
-      },
-      background: {
-        primary: '#191A1B',
-        secondary: '#28292B',
-        gradient: '#232526',
-        white: '#FFFFFF0D',
-      },
-      box: {
-        DEFAULT: '#CCCCCC1A',
-        border: '#454545',
-        container: '#00000033',
-        secondary: '#252628',
-      },
-      typography: {
-        DEFAULT: '#FFFFFF',
-        secondary: '#CCCCCC',
-        disabled: '#87898C',
-      },
+      yellow: '#fef8e1',
       transparent: 'transparent',
     },
     fontFamily: {
-      dana: ['dana'],
+      dana: ['IRANSans'],
     },
     extend: {
       backgroundImage: {

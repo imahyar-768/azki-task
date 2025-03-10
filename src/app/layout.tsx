@@ -1,5 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import {QueryProvider} from '@/Providers/QueryProvider';
+import {ReactNode} from 'react';
 
 export const metadata: Metadata = {
   title: 'Azki-task',
@@ -9,11 +11,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }
